@@ -19,6 +19,9 @@ def get():
 def getmovies():
     param = str(request.json['type'])
     input = str(request.json['value'])
+
+    if not param or not input:
+        return jsonify({"Message": "Bad Request"}), 400
     if param not in ['year', 'category', 'winner']:
         return jsonify({"Message": "Bad Request"}), 400
     results = filereader(param, input)
