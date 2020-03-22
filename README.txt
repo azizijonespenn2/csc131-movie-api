@@ -37,3 +37,10 @@ Required param type for movie api call:
         - for type winner:
             - FALSE
             - TRUE
+
+example body parameters:
+
+{
+ "type":"year",
+ "value":"1993"
+}
