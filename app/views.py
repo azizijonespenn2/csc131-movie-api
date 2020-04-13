@@ -17,8 +17,20 @@ def getdetails():
     title = str(request.json['title'])
     if title:
         req = OMDB_API_URL +  title.lower().strip().replace(' ', '+')
-        res = requests.get(req)
-        return res.json(), 200
+        res = requests.get(req).json()
+
+        data = {
+            "title": res['Title'],
+            "year": res['Year'],
+            "about": res['Plot'],
+            "awards": res['Awards'],
+            "image": res['Poster'],
+            "imdbId": res['imdbID'],
+            "imdbRating": res['imdbRating'],
+            "director": res['Director']
+        }
+
+        return  jsonify(data), 200
     else:
         return jsonify({"Message": "Bad Request"}), 403
 
